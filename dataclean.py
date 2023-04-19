@@ -151,11 +151,11 @@ class Dataclean:
         plt.show()
         
     def label(self,x):
-        label={'religion': 1,     
-        'age': 2,                    
-        'gender':3,                 
-        'ethnicity':4,              
-        'not_cyberbullying':5,      
-        'other_cyberbullying':6}
+        label={'religion': 0,     
+        'age': 1,                    
+        'gender':2,                 
+        'ethnicity':3,              
+        'not_cyberbullying':4,      
+        'other_cyberbullying':5}
         return label[x]
             

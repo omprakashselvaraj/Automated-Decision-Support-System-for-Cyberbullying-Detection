@@ -5,8 +5,11 @@ import pandas as pd
 
 if __name__ == '__main__':
     file = 'cyberbullying_tweets.csv'
-    vector = 'tfidf'
-    models = ['logistic_regression','naivebayes_classifier']
+    vector = 'count'
+    '''models = ['logistic_regression','naivebayes_classifier',
+              'decisiontree_classifier','randomforest_classifier',
+              'svm_classifier','passiveaggressive_classifier']'''
+    models = ['logistic_regression']
     dc = dataclean.Dataclean(file)
     dc.data_properties()
     '''plot = dc.count_plot('cyberbullying_type')'''
@@ -39,7 +42,15 @@ if __name__ == '__main__':
     
     data = dc.data
     mod = model.Model(data)
-    model_dic = {'logistic_regression':mod.logistic_regression,'naivebayes_classifier':mod.naivebayes_classifier}
+    model_dic = {'logistic_regression':mod.logistic_regression,
+                 'naivebayes_classifier':mod.naivebayes_classifier,
+                 'decisiontree_classifier':mod.decisiontree_classifier,
+                 'randomforest_classifier':mod.randomforest_classifier,
+                 'svm_classifier':mod.svm_classifier,
+                 'passiveaggressive_classifier':mod.passiveAggressive_classifier,
+                 'xgboost_classifier': mod.xgboost_classifier,
+                 'lgbm_classifier':mod.lgbm_classifier
+                 }
     x_train,x_test,y_train,y_test = mod.train_test_splitter()
     if vector == 'tfidf':
         vector_train, vector_test = mod.tfidf_vectorization(x_train, x_test, y_train, y_test)
@@ -55,6 +66,6 @@ if __name__ == '__main__':
         res = mod.evaluation_metrics(pre_train, pre_test, x_train, x_test, y_train, y_test,i)
         result = result.append(res, ignore_index = True)
     print(result)
-    result.to_excel('result.xlsx',index = False)
+    result.to_excel('result3.xlsx',index = False)
         
         
